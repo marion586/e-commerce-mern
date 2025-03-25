@@ -1,0 +1,2 @@
+-frontend dependecies:
+=>>react-router-dom react-lottie for a place, react-iconms , country-state-city
