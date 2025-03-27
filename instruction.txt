@@ -1,2 +1,8 @@
 -frontend dependecies:
 =>>react-router-dom react-lottie for a place, react-iconms , country-state-city
+
+backend: 
+
+-how to handle error in node js 
+-learn node js process
+-master node js
