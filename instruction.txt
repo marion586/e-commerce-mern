@@ -17,3 +17,5 @@ some route is only for user , seller ,can't acces user route
 user can't acces seller , 
 
 check route
+
+-there are types of middlwares in express , exteranl middlware and built in middleware
