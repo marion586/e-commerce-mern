@@ -1,3 +1,5 @@
+//config
+
 const express = require("express");
 const error = require("./middleware/error");
 
@@ -18,14 +20,6 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // app.use(fileUpload({ useTempFiles: true }));
-
-//config
-
-if (process.env.NODE_ENV == "PRODUCTION") {
-  require("dotenv").config({
-    path: "backend/config/.env",
-  });
-}
 
 app.use("/", express.static("../uploads"));
 

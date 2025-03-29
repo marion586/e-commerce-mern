@@ -1,3 +1,4 @@
+require("./config")();
 const app = require("./app");
 const connectDatabase = require("./db/Database");
 
@@ -8,13 +9,6 @@ process.on("uncaughtException", (err) => {
   console.log(`Shutting down the server for handling uncaught exception`);
   process.exit(1);
 });
-
-if (process.env.NODE_ENV !== "PRODUCTION") {
-  console.log("Node ENV", process.env.NODE_ENV);
-  require("dotenv").config({
-    path: "config/.env",
-  });
-}
 
 // create server
 
