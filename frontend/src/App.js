@@ -1,14 +1,33 @@
-import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import React, { useEffect } from "react";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import { LoginPage, SignUpPage, ActivationPage } from "./Routes";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
+import { server } from "./server";
+import axios from "axios";
+
 const App = () => {
+  const location = useLocation();
+  useEffect(() => {
+    if (!location.pathname.startsWith("/activation")) {
+      axios
+        .get(`${server}/user/getuser`, { withCredentials: true })
+        .then((res) => {
+          console.log(res);
+          toast.success(res.data.message);
+        })
+        .catch((err) => {
+          console.log(err);
+          toast.error(err.response?.data?.message || "An error occurred");
+        });
+    }
+  }, [location.pathname]); // ✅ Runs when route changes
+
   return (
-    <BrowserRouter>
+    <>
       <Routes>
-        <Route path="/login" element={<LoginPage />} />,
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/sign-up" element={<SignUpPage />} />
         <Route
           path="/activation/:activation_token"
@@ -27,8 +46,14 @@ const App = () => {
         pauseOnHover
         theme="dark"
       />
-    </BrowserRouter>
+    </>
   );
 };
 
-export default App;
+const AppWrapper = () => (
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
+);
+
+export default AppWrapper;
