@@ -96,8 +96,37 @@ router.post(
 
       jwtToken.sendToken(user, 201, res);
     } catch (error) {
-      console.log(error);
-      next(new ErrorHandler("There is error", 500));
+      next(error);
+    }
+  })
+);
+
+//login user
+
+router.post(
+  "/login-user",
+  catchAsyncErrors(async (req, res, next) => {
+    try {
+      const { email, password } = req.body;
+      if (!email || !password) {
+        return newt(new ErrorHandler("Please provide the all fields!", 400));
+      }
+
+      const user = await User.findOne({ email }).select("+password");
+      if (!user) {
+        return next(new ErrorHandler("User doesn't exists!", 400));
+      }
+
+      const isPasswordValid = await user.comparePassword(password);
+
+      if (!isPasswordValid) {
+        return next(
+          new ErrorHandler("Please Provide the correct information", 400)
+        );
+      }
+      jwtToken.sendToken(user, 201, res);
+    } catch (error) {
+      return next(new ErrorHandler(error.message, 500));
     }
   })
 );
