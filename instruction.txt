@@ -18,4 +18,9 @@ user can't acces seller ,
 
 check route
 
--there are types of middlwares in express , exteranl middlware and built in middleware
+-there are types of middlwares in express , exteranl middlware and built in 
+
+
+
+
+what should i do is make the header content , something likereusable
