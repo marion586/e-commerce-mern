@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "../../styles/styles";
 import { Link } from "react-router-dom";
 import { categoriesData, productData } from "../../static/data";
+import { useSelector } from "react-redux";
 import {
   AiOutlineHeart,
   AiOutlineSearch,
@@ -12,7 +13,10 @@ import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
 import { BiMenuAltLeft } from "react-icons/bi";
 import DropDown from "./DropDwon/DropDown";
 import Navbar from "./Navbar/Navbar";
+import { backend_url } from "../../server";
+
 const Header = ({ activeHeading }) => {
+  const { isAuthenticated, user, loading } = useSelector((state) => state.user);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchData, setSearchData] = useState(null);
   const [active, setActive] = useState(false);
@@ -36,6 +40,7 @@ const Header = ({ activeHeading }) => {
       setActive(false);
     }
   });
+  if (loading) return null;
   return (
     <>
       <div className={`${styles.section}`}>
@@ -157,9 +162,19 @@ const Header = ({ activeHeading }) => {
 
             <div className={`${styles.normalFlex}`}>
               <div className="relative cursor-pointer mr-[15px]">
-                <Link to="/login">
-                  <CgProfile size={30} color="rgb(255 255 255 / 83%)" />
-                </Link>
+                {isAuthenticated ? (
+                  <Link to="/login">
+                    <img
+                      src={`${backend_url}/${user.avatar.url}`}
+                      className="w-10 h-10 object-cover rounded-full"
+                      alt=""
+                    />
+                  </Link>
+                ) : (
+                  <Link to="/login">
+                    <CgProfile size={30} color="rgb(255 255 255 / 83%)" />
+                  </Link>
+                )}
               </div>
             </div>
           </div>
