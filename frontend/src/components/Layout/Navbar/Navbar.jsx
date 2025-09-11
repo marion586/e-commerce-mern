@@ -5,20 +5,20 @@ import { Link } from "react-router-dom";
 
 const Navbar = ({ active }) => {
   return (
-    <div className={`${styles.normalFlex} gap-4 flex-col`}>
+    <div
+      className={`${styles.normalFlex} gap-4  md:pl-0 flex-col md:flex-row !items-start`}
+    >
       {navItems &&
         navItems.map((i, index) => (
-          <div className="flex " key={i.url + index}>
+          <div className="flex justify-start" key={i.url + index}>
             <Link
               to={i.url}
-              className={`px-6 py-2 font-medium rounded-md transition-colors duration-300
+              className={`px-5 py-2 font-semibold transition-colors duration-300
                 ${
                   +active === index + 1
-  ? "text-indigo-600 md:text-white border-b-2 border-indigo-600 md:border-white"
-  : "text-gray-800 md:text-white hover:text-indigo-500"
+                    ? "text-green-500"
+                    : "text-gray-800 md:text-white hover:text-green-500"
                 }
-                md:text-white md:hover:text-gray-200 
-                text-gray-800 hover:text-gray-600
               `}
             >
               {i.title}
