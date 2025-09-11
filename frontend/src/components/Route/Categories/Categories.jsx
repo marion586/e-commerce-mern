@@ -8,11 +8,11 @@ const Categories = () => {
     <>
       <div className={`${styles.section} hidden sm:block`}>
         <div
-          className={`branding my-12 flex justify-betwen w-full shadow-sm bg-white p-5 rounded-md`}
+          className={`branding my-12 flex justify-betwen w-full gap-2 800px:gap-7 shadow-sm bg-white p-5 rounded-md`}
         >
           {brandingData &&
             brandingData.map((i, index) => (
-              <div className="flex items-start" key={index}>
+              <div className="flex items-start justify-around " key={index}>
                 {i.icon}
 
                 <div className="px-3">
@@ -28,7 +28,7 @@ const Categories = () => {
         id="categories"
         className={`${styles.section} bg-white p-6 rounded-lg mb-12`}
       >
-        <div className="grid grid-cols-1 gap-[5px] md:grid-cols-2 md:gap-[10px] lg:grid-cols-4 lg:gap-[20px] xl:grid-cols-5 xl:gap-[30px]">
+        <div className="grid grid-cols-1 gap-[5px] md:grid-cols-2 md:gap-[10px] lg:grid-cols-4 lg:gap-[20px] xl:grid-cols-4 xl:gap-[30px]">
           {categoriesData &&
             categoriesData.map((i, index) => {
               const handleSubmit = (i) => {
