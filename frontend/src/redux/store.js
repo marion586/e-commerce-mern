@@ -4,6 +4,7 @@ import { productReducer } from './reducers/product';
 import {orderReducer} from './reducers/order'
 import { wishlistReducer } from "./reducers/wishlist";
 import { cartReducer } from "./reducers/cart";
+import { sellerReducer } from './reducers/seller';
 const store = configureStore({
   reducer: {
     user: userReducer,
@@ -11,6 +12,7 @@ const store = configureStore({
     order: orderReducer,
     wishlist: wishlistReducer,
     cart: cartReducer,
+    seller : sellerReducer
   },
 });
 
